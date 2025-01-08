@@ -120,11 +120,11 @@ SELECT T.id_turma, T.id_curso, T.data_inicio
 	FROM dbo.Turmas T
 
 --Utilizar Nomes Personalizados para nossos campos
-SELECT T.id_curso AS IDC, T.id_turma AS IDT, T.data_inicio AS "DATA COMEÇO"
+SELECT T.id_curso AS IDC, T.id_turma AS IDT, T.data_inicio AS "DATA COME O"
 	FROM dbo.Turmas T
 
 --Segunda forma
-SELECT tt.id_curso IDC, tt.id_turma IDT, tt.data_inicio "DATA COMEÇO"
+SELECT tt.id_curso IDC, tt.id_turma IDT, tt.data_inicio "DATA COME O"
 	FROM dbo.Turmas TT
 
 ---------------------------------------------------------------------------------------------
@@ -133,7 +133,7 @@ SELECT a.*
 	FROM dbo.Alunos a
 	WHERE a.nome = 'Fabio Eizo Rodriguez Matsumoto'
 
---selecionando todos, com excessão de um aluno (<>)
+--selecionando todos, com excess o de um aluno (<>)
 SELECT a.*
 	FROM dbo.Alunos a
 	WHERE a.nome <> 'Fabio Eizo Rodriguez Matsumoto'
@@ -163,13 +163,13 @@ SELECT a.*
 
 --TRATAMENTO DE ERROS
 --Exemplo 1
---Tabela não existe
+--Tabela n o existe
 BEGIN TRY
 	SELECT * FROM tempTable;
 END TRY
 BEGIN CATCH
 	SELECT
-		ERROR_NUMBER() AS Número_erro,
+		ERROR_NUMBER() AS N mero_erro,
 		ERROR_MESSAGE() as Mensagem_erro;
 END CATCH;
 
@@ -199,7 +199,7 @@ BEGIN
 		SELECT 1/0;
 	END TRY
 	BEGIN CATCH
-		PRINT 'Erro número   : ' + convert(varchar, error_number());
+		PRINT 'Erro n mero   : ' + convert(varchar, error_number());
 		PRINT 'Erro mensagem : ' + error_message();
 		PRINT 'Erro severiry : ' + convert(varchar, error_severity());
 		PRINT 'Erro state    : ' + convert(varchar, error_state());
@@ -317,3 +317,7 @@ BEGIN
 	SELECT @vIdCurso AS retorno;
 END;
 GO;
+
+EXEC IncluirNovoCurso 'VBA I', 'FABIO';
+SELECT * FROM Cursos ORDER BY id_curso DESC;
+DELETE FROM Cursos WHERE id_curso in (2);
